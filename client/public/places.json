@@ -1,0 +1,65 @@
+{
+	"html_attributions": [],
+	"next_page_token": "CpQCDwEAAJwdqLU_q4CMC9j-DOFIiwmwpP8ICAF_lHHKpWrNLfYsLS0hubKFTbau5sp7Tc_vC2bftXqZSRfq4uMk34-nE1f3weBRv77ZvsUhQn1MvJCfW6pNFA6zrDP_lPLBQZVrGVePIGhW8g485WnZdAHUyKpr4jjJ6hiOh2R6MxVBTYHyRuy5mDa-NGx4zQXDsHGSejOPH6BmPUoyfb-2MmRo1kcYABkBZRAaXpDmTtoXLmX8GxELbMOOAjEJ8Vzxdk-4GQkzoDYB1YwHBR1JXzxlawX0DdUyaJKjLWGjvt8GOwF8d9KVTF0r528jDCheFjvRgxOGMeYq1IrUx9lBofHH4sAX2plD6BGumN40mdBkDKVMEhC8pyLxL6t51mflBEc_WkF6GhTsH0kHwldrZYDnyUZ78TU9zeiiqg",
+	"results": [{
+			"formatted_address": "3818 Sunset Blvd, Los Angeles, CA 90026, USA",
+			"price":"£12.99",
+			"image":"https://images.pexels.com/photos/1756957/pexels-photo-1756957.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+			"geometry": {
+				"location": {
+					"lat": 54.602031,
+					"lng": -5.9349633
+				}
+			},
+			"id": "1113d3dd7339f965caae39387dd808a9e877bc2e"
+		},
+		{
+			"formatted_address": "1700 Sunset Blvd, Los Angeles, CA 90026, USA",
+			"price":"£3.99",
+			"image":"https://images.pexels.com/photos/6147/cars-red-car-parking.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+			"geometry": {
+				"location": {
+					"lat": 54.6021239,
+					"lng": -5.9337563
+				}
+			},
+			"id": "d8bc8d867ccf72cbc552e100238a0820628963ee",
+			"opening_hours": {
+				"open_now": false,
+				"weekday_text": []
+			}
+		},
+		{
+			"formatted_address": "8284 Melrose Ave, Los Angeles, CA 90046, USA",
+			"price":"£19.99",
+			"image":"https://images.pexels.com/photos/103601/pexels-photo-103601.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+			"geometry": {
+				"location": {
+					"lat": 54.6002116,
+					"lng": -5.9177033
+				}
+			},
+			"opening_hours": {
+				"open_now": false,
+				"weekday_text": []
+			}
+		},
+		{
+			"formatted_address": "4319 Sunset Blvd, Los Angeles, CA 90029, USA",
+			"price":"£1.40",
+			"image":"https://images.pexels.com/photos/235226/pexels-photo-235226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+			"geometry": {
+				"location": {
+					"lat": 54.6013812,
+					"lng": -5.9352141
+				}
+			},
+			"id": "287049135d7d1ab1bfd2de8d7654afcc97cfee77",
+			"opening_hours": {
+				"open_now": false,
+				"weekday_text": []
+			}
+		}
+	],
+	"status": "OK"
+}
