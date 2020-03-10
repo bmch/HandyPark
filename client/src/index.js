@@ -1,37 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-  Route,
-  Switch,
-  Redirect,
-  BrowserRouter as Router
-} from 'react-router-dom';
+import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
+import AppRouter from './routers/AppRouter';
+import configureStore from './store/store';
 
-// examples:
-import Home from './Home';
-import Main from './main/Main';
-// import LocationsDashboard from './components_refactor/LocationsDashboard';
-import Dashboard from './components/Dashboard';
+const store = configureStore();
 
-// styles
-import './index.css';
-
-// components
-import App from './App';
-
-const defaultPath = process.env.REACT_APP_BASE_PATH;
-
-ReactDOM.render(
-  <Router>
-    <App>
-      <Switch>
-        <Route exact path={defaultPath} component={Home} />
-        <Route path={`${defaultPath}default`} component={Main} />
-
-        <Route path={`${defaultPath}dashboard`} component={Dashboard} />
-        <Redirect exact from="*" to={defaultPath} />
-      </Switch>
-    </App>
-  </Router>,
-  document.getElementById('root')
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
+
+ReactDom.render(<Root store={store} />, document.getElementById('root'));

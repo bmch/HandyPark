@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Checkout from './Checkout';
+
+//import Checkout from './Checkout';
 
 export default function BookButton({ id, price, start_date, end_date }) {
   const [open, setOpen] = React.useState(false);
@@ -24,12 +25,12 @@ export default function BookButton({ id, price, start_date, end_date }) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <Checkout
+        {/* <Checkout
           id={id}
           price={price}
           start_date={start_date}
           end_date={end_date}
-        />
+        /> */}
       </Dialog>
     </div>
   );

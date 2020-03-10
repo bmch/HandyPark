@@ -4,13 +4,12 @@ import locationsReducer from '../reducers/locations';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default () => {
+export default initialState => {
   const store = createStore(
     combineReducers({
       locations: locationsReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
-
   return store;
 };

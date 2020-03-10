@@ -13,12 +13,12 @@ export default ({
   end_date
 }) => (
   <div
-    onMouseEnter={() => cardHover(id)}
-    onMouseLeave={() => cardExit()}
+    // onMouseEnter={() => cardHover(id)}
+    // onMouseLeave={() => cardExit()}
     className={hoveredId === id ? 'card hover-state' : 'card base-state'}
   >
     <div>
-      <img src={src}></img>
+      <img src={src} alt="car park"></img>
     </div>
 
     <div>{address}</div>
