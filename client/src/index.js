@@ -10,7 +10,7 @@ import {
 // examples:
 import Home from './Home';
 import Main from './main/Main';
-import LocationForm from './components/LocationForm';
+// import LocationsDashboard from './components_refactor/LocationsDashboard';
 import Dashboard from './components/Dashboard';
 
 // styles
