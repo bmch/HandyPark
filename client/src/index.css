@@ -3,34 +3,34 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-
+/*
 .left {
-  width:450px;
+  width: 450px;
   background: #efefef;
-  overflow:scroll;
-  height:84vh;
+  overflow: scroll;
+  height: 84vh;
 }
 
 #root {
-
 }
-
+*/
 img {
-  width:110px;
+  width: 110px;
   height: 105px;
   border-radius: 12px;
-  margin:7px;
+  margin: 7px;
 }
 
+/*
 .container {
-  display:flex;
-} 
-
-p{
-  padding:0px;
-  margin:0px;
+  display: flex;
 }
 
+p {
+  padding: 0px;
+  margin: 0px;
+} 
+*/
 .card {
   border-radius: 9px;
   padding-left: 5px;
@@ -44,11 +44,10 @@ p{
 
   margin-top: 10px;
   margin-bottom: 10px;
-  
-  background:white;
-  height:140px;
+
+  background: white;
+  height: 140px;
   display: flex;
-  width:333px;
 
   justify-content: space-between;
 
@@ -56,15 +55,15 @@ p{
 }
 
 .hover-state {
- border: 1px solid darkgrey;
- -webkit-box-shadow: 6px 6px 40px 0px rgba(0,0,0,0.64) !important;
--moz-box-shadow: 6px 6px 40px 0px rgba(0,0,0,0.64) !important;
-box-shadow: 6px 6px 40px 0px rgba(0,0,0,0.64) !important;
+  border: 1px solid darkgrey;
+  -webkit-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  -moz-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
 }
 
 .last-div-card {
   font-size: 1.5rem;
-  color:#363533 ;
+  color: #363533;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,23 +71,23 @@ box-shadow: 6px 6px 40px 0px rgba(0,0,0,0.64) !important;
 }
 
 .base-state {
-border: 1px solid lightgrey;
+  border: 1px solid lightgrey;
 }
-
- .date-selection {
+/* 
+.date-selection {
   padding: 10px;
   margin: 10px;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: flex-end;
-} 
+}
 
 .add-carpark {
   text-align: center;
   max-width: 600px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .upper {
-  text-transform: uppercase!important;
-}
+  text-transform: uppercase !important;
+} */

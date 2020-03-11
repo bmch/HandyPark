@@ -18,7 +18,7 @@ export default ({
     className={hoveredId === id ? 'card hover-state' : 'card base-state'}
   >
     <div>
-      <img src={src} alt="car park"></img>
+      <img src={src} alt={address}></img>
     </div>
 
     <div>{address}</div>
