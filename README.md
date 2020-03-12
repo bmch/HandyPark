@@ -1,33 +1,93 @@
-# HandyPark
+<h1 align="center">Handy Park</h1>
 
-Car Parking Application
+<div align="center">A car park booking application built with React and Node </div>
 
-## Welcome
+<p align="center">
+  <img alt="Application View" src="https://i.imgur.com/emJU2TZ.jpg">
+</p>
 
-This is a MongoDB, Express, React, Node.js (MERN) application which uses a google-map-react component to render car park locations on the Google Map.
-The purpose of this project was to get more experience with React, Material-UI and styled components.
+## ❯ What is this and who is it for 🤷‍♀️
 
-## Getting set up
+HandyPark is a parking management app designed for car parking companies to manage and sell spaces online.
+It overlays custom price markers for each parking location using the [google-map-react](https://github.com/google-map-react/google-map-react) library. This project was completed in one week. The purpose was was to get more experience with React, Material-UI and styled components.
 
-### 1. Required software
+---
 
-MongoDB is required to fully operate this applicaiton.
+## ❯ Screenshots 🖥️ 📷
 
-### 2. Installing and running the project
+<p align="center">
+  <img alt="Application View" src="https://github.com/bmch/HandyPark/blob/master/img/React%20App.gif">
+</p>
 
-# Setting Up the server
+<p align="center">
+  <img alt="Application View" src="https://i.imgur.com/2ddhxcu.png">
+</p>
 
-- Type `git clone https://github.com/bmch/HandyPark.git` into the terminal to pull down a copy of the code
-- Type `cd server` to change your current directory to the server folder
-- Type `npm install` to install all of the server dependencies
-- Ensure MongoDB is running and then type `node index.js` to run the server
+Material UI admin panel
 
-# Setting Up the client
+<p align="center">
+  <img alt="Material UI Admin Panel" src="https://i.imgur.com/jPYTL1m.png">
+</p>
+---
 
-- Type `cd ../client` to change your current directory to the server folder
-- Type `npm install` to install the react application dependencies
-- then type `npm start`
+## ❯ Installation 💾
 
-### 3. ...to do
+### Setting up the server 🛠
 
-... Images
+Type the following command into the terminal to pull down a copy of the code
+
+```bash
+git clone https://github.com/bmch/HandyPark.git
+```
+
+To change your current directory to the server folder
+
+```bash
+cd server
+```
+
+To install all of the server dependencies type
+
+```bash
+npm install
+```
+
+Ensure MongoDB is running and then type node index.js to run the server
+
+```bash
+node index.js
+```
+
+### Setting up the client 🛠
+
+Move to the client directory
+
+```bash
+cd ../client
+```
+
+Install the project dependencies
+
+```bash
+npm install
+```
+
+Start the front end react client
+
+```bash
+node index.js
+```
+
+---
+
+## ❯ Contributing
+
+I built this application in 7 days in a race against time. There is a lot of room for improvement. If you feel like it, you're more than welcome to contribute to the project. Just fork the repository and submit a pull request. Thanks in advance!
+
+## ❯ Author
+
+Brendan McHugh > [Github](https://github.com/bmch)
+
+## ❯ License
+
+[MIT](https://opensource.org/licenses/MIT)
