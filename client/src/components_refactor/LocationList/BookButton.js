@@ -1,26 +1,29 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
-
-//import Checkout from './Checkout';
+import Dialog from '@material-ui/core/Dialog';
+import Checkout from '../Booking/Checkout';
 
 export default function BookButton({ id, price, start_date, end_date }) {
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
-      <Button variant="contained" color="inherit">
+      <Button
+        variant="contained"
+        style={{ backgroundColor: 'rgb(241, 89, 44)', color: 'white' }}
+        onClick={handleClickOpen}
+      >
         Book
       </Button>
-      {/* <Dialog
+      <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -31,7 +34,7 @@ export default function BookButton({ id, price, start_date, end_date }) {
           start_date={start_date}
           end_date={end_date}
         />
-      </Dialog> */}
+      </Dialog>
     </div>
   );
 }

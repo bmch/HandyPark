@@ -8,7 +8,7 @@ import { hover, unhover } from '../../actions/onMouseHover';
 import MarkerPNG from '../../assets/graphics/Sample_2.10-01-red.png';
 import MarkerHoverPNG from '../../assets/graphics/Sample_2.9-01-purple.png';
 
-const Wrapper2 = styled.div`
+const Wrapper = styled.div`
   background-image: url(${MarkerPNG});
   height: 100px;
   width: 59px;
@@ -50,6 +50,18 @@ const Price = styled.h1`
   color: white;
 `;
 
+const PriceHover = styled.h1`
+  font-size: 1.8em;
+  text-align: center;
+
+  vertical-align: top;
+  padding-top: 19px;
+  margin-top: 2px;
+  position: aboslute;
+  margin: 0;
+  color: white;
+`;
+
 const Marker = ({ price, id }) => {
   const hoverID = useSelector(state => state.hoverID);
   const dispatch = useDispatch();
@@ -63,12 +75,12 @@ const Marker = ({ price, id }) => {
         onMouseLeave={() => dispatch(unhover())}
         primary={id === hoverID}
       >
-        {<Price>{'£' + parseFloat(price).toFixed(0)}</Price>}
+        {<PriceHover>{'£' + parseFloat(price).toFixed(0)}</PriceHover>}
       </HighLightWrapper>
     );
   } else
     return (
-      <Wrapper2
+      <Wrapper
         onMouseEnter={() => {
           dispatch(hover(id));
         }}
@@ -76,7 +88,7 @@ const Marker = ({ price, id }) => {
         primary={id === hoverID}
       >
         {<Price>{'£' + parseFloat(price).toFixed(0)}</Price>}
-      </Wrapper2>
+      </Wrapper>
     );
 };
 

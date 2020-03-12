@@ -1,5 +1,6 @@
 .top {
-  background: pink;
+  /* background: rgb(241, 89, 44); */
+  background: rgb(247, 111, 79);
   height: 14vh;
   width: 100vw;
 }
@@ -30,6 +31,17 @@
     display: none;
     width: 100vw;
   }
+
+  /* .toggle {
+    z-index: 100;
+    position: fixed;
+  } */
+  /* .hide {
+    display: none;
+  }
+  .show {
+    display: absolute;
+  } */
 }
 
 @media only screen and (min-width: 750px) and (max-width: 1100px) {

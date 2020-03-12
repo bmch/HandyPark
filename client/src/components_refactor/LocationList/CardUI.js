@@ -3,17 +3,7 @@ import BookButton from './BookButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { hover, unhover } from '../../actions/onMouseHover';
 
-export default ({
-  src,
-  hoveredId,
-  address,
-  id,
-  price,
-  cardHover,
-  cardExit,
-  start_date,
-  end_date
-}) => {
+export default ({ src, address, id, price, start_date, end_date }) => {
   const hoverID = useSelector(state => state.hoverID);
   const dispatch = useDispatch();
 

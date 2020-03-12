@@ -58,13 +58,8 @@ export default () => {
       </div>
 
       <div className="toggle">
-        <button
-          onClick={() => {
-            toggleListView();
-            console.log(listView);
-          }}
-        >
-          toggle view change
+        <button onClick={() => toggleListView()}>
+          {listView ? 'View in Map' : 'List View'}
         </button>
       </div>
 
