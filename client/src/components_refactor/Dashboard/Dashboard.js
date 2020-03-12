@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LocationList from '../LocationList/LocationList';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Marker from '../GoogleMap/Marker';
-import '../../style.css';
+import Logo from '../../assets/graphics/handyparklogo@2x.png';
+import '../../style.scss';
 
 export default () => {
   const locations = useSelector(state => state.locations);
@@ -42,12 +43,36 @@ export default () => {
     });
   };
 
+  const [listView, setListView] = useState(true);
+  const toggleListView = params => {
+    console.log('toggle fired');
+    setListView(!listView);
+  };
+
   return (
     <React.Fragment>
-      <div className="top"></div>
-      <LocationList />
+      <div className="top">
+        <div>
+          <img className="logo" src={Logo} alt="Handy Park Logo" />
+        </div>
+      </div>
+
+      <div className="toggle">
+        <button
+          onClick={() => {
+            toggleListView();
+            console.log(listView);
+          }}
+        >
+          toggle view change
+        </button>
+      </div>
+
+      <LocationList showHideClass={listView} />
+
       {locations.length && (
         <GoogleMap
+          showHideClass={listView}
           defaultZoom={6}
           defaultCenter={[4.5983562, -5.9304971]}
           yesIWantToUseGoogleMapApiInternals
@@ -57,9 +82,6 @@ export default () => {
         >
           {locations.map(place => (
             <Marker
-              //   markerHover={this.markerHover}
-              //   markerExit={this.markerExit}
-              //   hoveredId={this.state.hoveredId}
               key={place._id}
               id={place._id}
               price={place.quote ? place.quote : place.price}

@@ -3,17 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchParkingLocations } from '../../actions/parkingLocations';
 import CardUI from './CardUI';
 
-export const LocationList = () => {
+export const LocationList = ({ showHideClass }) => {
   const locations = useSelector(state => state.locations);
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchParkingLocations()), [dispatch]);
 
   return (
-    <div className="list">
-      <div class="toggle">
-        <button>toggle view</button>
-      </div>
+    <div className={showHideClass ? 'show list' : 'hide list'}>
       {locations.length &&
         locations.map(place => (
           <CardUI
@@ -24,9 +21,6 @@ export const LocationList = () => {
             price={place.quote ? place.quote : place.price}
             start_date={place.start_date ? place.start_date : Date.now()}
             end_date={place.end_date ? place.end_date : Date.now()}
-            // hoveredId={this.state.hoveredId}
-            // cardHover={this.cardHover}
-            // cardExit={this.cardExit}
           />
         ))}
     </div>

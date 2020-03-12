@@ -1,0 +1,85 @@
+.top {
+  background: rgb(247, 111, 79);
+  height: 14vh;
+  width: 100vw;
+  .logo {
+    height: 100%;
+    width: 190px;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.list {
+  height: 85vh;
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+}
+
+.map {
+  height: 85vh;
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+}
+
+@media only screen and (max-width: 750px) {
+  .list {
+    width: 100vw;
+  }
+  .map {
+    width: 100vw;
+  }
+
+  .toggle {
+    z-index: 100;
+    position: fixed;
+  }
+  .hide {
+    display: none;
+  }
+  .show {
+    display: absolute;
+  }
+}
+
+@media only screen and (min-width: 750px) and (max-width: 1100px) {
+  .toggle {
+    display: none;
+  }
+  .list {
+    width: 45vw;
+  }
+  .map {
+    width: 54vw;
+  }
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1400px) {
+  .toggle {
+    display: none;
+  }
+  .list {
+    width: 33vw;
+  }
+  .map {
+    width: 66vw;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .toggle {
+    display: none;
+  }
+
+  .list {
+    width: 25vw;
+  }
+
+  .map {
+    width: 74vw;
+  }
+}
