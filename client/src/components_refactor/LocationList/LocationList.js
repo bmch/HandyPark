@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchParkingLocations } from '../../actions/parkingLocations';
+
 import CardUI from './CardUI';
 
 export const LocationList = ({ showHideClass }) => {
-  const locations = useSelector(state => state.locations);
+  const locations = useSelector(state => state.locations.locations);
+
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchParkingLocations()), [dispatch]);

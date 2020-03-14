@@ -15,12 +15,14 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import moment from 'moment';
 import ApiClient from '../../services/ApiClient';
+import clsx from 'clsx';
+import Check from '@material-ui/icons/Check';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="#">
         Handy Parking
       </Link>{' '}
       {new Date().getFullYear()}
@@ -102,6 +104,29 @@ export default function Checkout({ id, price, start_date, end_date }) {
     });
   };
 
+  const useQontoStepIconStyles = makeStyles({
+    root: {
+      color: '#eaeaf0',
+      display: 'flex',
+      height: 22,
+      alignItems: 'center'
+    },
+    active: {
+      color: 'rgb(241, 89, 44)'
+    },
+    circle: {
+      width: 8,
+      height: 8,
+      borderRadius: '50%',
+      backgroundColor: 'currentColor'
+    },
+    completed: {
+      color: 'rgb(241, 89, 44)',
+      zIndex: 1,
+      fontSize: 18
+    }
+  });
+
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -132,6 +157,25 @@ export default function Checkout({ id, price, start_date, end_date }) {
     }
   }
 
+  function QontoStepIcon(props) {
+    const classes = useQontoStepIconStyles();
+    const { active, completed } = props;
+
+    return (
+      <div
+        className={clsx(classes.root, {
+          [classes.active]: active
+        })}
+      >
+        {completed ? (
+          <Check className={classes.completed} />
+        ) : (
+          <div className={classes.circle} />
+        )}
+      </div>
+    );
+  }
+
   const handleChange = event => {
     const { name, value } = event.target;
     console.log('event', event);
@@ -149,14 +193,14 @@ export default function Checkout({ id, price, start_date, end_date }) {
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Booking Total: £{price}
+            {/* Booking Total: £{price} */}
           </Typography>
         </Toolbar>
 
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            {moment(start_date).format('MMM Do YYYY, h:mm a')} to{' '}
-            {moment(end_date).format('MMM Do YYYY, h:mm a')}
+            {/* {moment(start_date).format('MMM Do YYYY, h:mm a')} to{' '}
+            {moment(end_date).format('MMM Do YYYY, h:mm a')} */}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -168,7 +212,7 @@ export default function Checkout({ id, price, start_date, end_date }) {
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map(label => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
@@ -194,7 +238,10 @@ export default function Checkout({ id, price, start_date, end_date }) {
                   )}
                   <Button
                     variant="contained"
-                    color="primary"
+                    style={{
+                      backgroundColor: 'rgb(241, 89, 44)',
+                      color: 'white'
+                    }}
                     onClick={() => {
                       handleNext();
                       activeStep === steps.length - 1

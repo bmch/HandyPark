@@ -3,9 +3,13 @@ import BookButton from './BookButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { hover, unhover } from '../../actions/onMouseHover';
 
+import { css } from '@emotion/core';
+import FadeLoader from 'react-spinners/FadeLoader';
+
 export default ({ src, address, id, price, start_date, end_date }) => {
   const hoverID = useSelector(state => state.hoverID);
   const dispatch = useDispatch();
+  const isFetching = useSelector(state => state.locations.isFetching);
 
   return (
     <div
@@ -19,7 +23,12 @@ export default ({ src, address, id, price, start_date, end_date }) => {
 
       <div>{address}</div>
       <div className="last-div-card">
-        <div>£{parseFloat(price).toFixed(2)} </div>
+        {isFetching ? (
+          <FadeLoader color={'rgb(241, 89, 44)'} loading={isFetching} />
+        ) : (
+          <div>£{parseFloat(price).toFixed(2)} </div>
+        )}
+
         <div>
           <BookButton
             id={id}

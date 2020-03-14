@@ -1,0 +1,28 @@
+.bar {
+  height: 55px;
+  background: #efefef;
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  .datepicker {
+    border: 1px solid lightgrey;
+    margin-right: 25px;
+    margin-left: 25px;
+    color: rgb(56, 55, 55);
+    //color: grey;
+    padding: 4px;
+    padding-left: 14px;
+    height: 27px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+  }
+  search-button {
+    z-index: 100;
+    background: yellow;
+  }
+}

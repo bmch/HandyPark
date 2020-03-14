@@ -4,10 +4,11 @@ import LocationList from '../LocationList/LocationList';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Marker from '../GoogleMap/Marker';
 import Logo from '../../assets/graphics/handyparklogo@2x.png';
-import '../../style.scss';
+import { DatePickerBar } from '../DatePickerBar/DatePickerBar';
+import './Dashboard.scss';
 
 export default () => {
-  const locations = useSelector(state => state.locations);
+  const locations = useSelector(state => state.locations.locations);
   /**
    * Fit map to its bounds after the api is loaded
    * @param {Object} map - current Google Map instance
@@ -56,6 +57,7 @@ export default () => {
           <img className="logo" src={Logo} alt="Handy Park Logo" />
         </div>
       </div>
+      <DatePickerBar />
 
       <div className="toggle">
         <button onClick={() => toggleListView()}>
