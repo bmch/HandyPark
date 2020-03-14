@@ -42,27 +42,3 @@ export const fetchParkingLocations = () => {
     });
   };
 };
-
-// export const searchRequestUpdateTimes = (payLoad = {}) => {
-//   console.log('payLoad', payLoad);
-
-//   return dispatch => {
-//     console.log('inside dispatch func');
-//     const { startDate = '', endDate = '' } = payLoad;
-//     console.log('start', startDate);
-//     console.log('end', endDate);
-//     const startDateISO = startDate.toISOString();
-//     const endDateISO = endDate.toISOString();
-//     console.log('this far');
-//     console.log(startDateISO);
-//     console.log(endDateISO);
-
-//     const qString = `?start_time=${startDateISO}&end_time=${endDateISO}`;
-//     console.log('qString', qString);
-
-//     //run loading spinner for 0.3 seconds
-//     ApiClient.fetchQuotes(qString, 'GET').then(locations => {
-//       dispatch(setParkingLocations(locations));
-//     });
-//   };
-// };

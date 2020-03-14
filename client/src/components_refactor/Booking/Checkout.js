@@ -13,8 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import moment from 'moment';
-import ApiClient from '../../services/ApiClient';
+import { useDispatch } from 'react-redux';
+import { startAddBooking } from '../../actions/booking';
 import clsx from 'clsx';
 import Check from '@material-ui/icons/Check';
 
@@ -76,6 +76,7 @@ const steps = ['Your details', 'Payment details', 'Review your booking'];
 export default function Checkout({ id, price, start_date, end_date }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const dispatch = useDispatch();
 
   const initialState = {
     price: price,
@@ -96,12 +97,6 @@ export default function Checkout({ id, price, start_date, end_date }) {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
-  };
-
-  const postBooking = reqBody => {
-    ApiClient.postBooking(reqBody).then(data => {
-      console.log(data);
-    });
   };
 
   const useQontoStepIconStyles = makeStyles({
@@ -137,7 +132,6 @@ export default function Checkout({ id, price, start_date, end_date }) {
             last_name={booking.last_name}
             email={booking.email}
             car_reg={booking.car_reg}
-            email={booking.email}
           />
         );
       case 1:
@@ -178,9 +172,6 @@ export default function Checkout({ id, price, start_date, end_date }) {
 
   const handleChange = event => {
     const { name, value } = event.target;
-    console.log('event', event);
-    console.log('name', name);
-    console.log('value', value);
     setBooking({
       ...booking,
       [name]: value
@@ -245,8 +236,8 @@ export default function Checkout({ id, price, start_date, end_date }) {
                     onClick={() => {
                       handleNext();
                       activeStep === steps.length - 1
-                        ? postBooking(booking)
-                        : console.log('activeStep - ', activeStep);
+                        ? dispatch(startAddBooking(booking))
+                        : console.log('');
                     }}
                     className={classes.button}
                   >

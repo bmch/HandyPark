@@ -2,11 +2,14 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { mergeClasses } from '@material-ui/styles';
 
-export default function AddressForm({first_name,last_name,car_reg,handleChange, email}) {
+export default function AddressForm({
+  first_name,
+  last_name,
+  car_reg,
+  handleChange,
+  email
+}) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -38,11 +41,9 @@ export default function AddressForm({first_name,last_name,car_reg,handleChange, 
             required
             name="email"
             label="Email"
-            name="email"
             value={email}
             onChange={handleChange}
             fullWidth
-            
           />
         </Grid>
         <Grid item xs={12}>
@@ -54,12 +55,9 @@ export default function AddressForm({first_name,last_name,car_reg,handleChange, 
             fullWidth
             value={car_reg}
             onChange={handleChange}
-            inputProps={{ style: { textTransform: 'uppercase'}}}
-
+            inputProps={{ style: { textTransform: 'uppercase' } }}
           />
         </Grid>
-       
-        
       </Grid>
     </React.Fragment>
   );
