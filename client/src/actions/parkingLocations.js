@@ -7,20 +7,20 @@ export const setParkingLocations = locations => ({
 });
 
 export const REQUEST_QUOTES = 'REQUEST_QUOTES';
-function requestQuotes(dates) {
+export const requestQuotes = dates => {
   return {
     type: REQUEST_QUOTES,
     dates
   };
-}
+};
 
 export const RECEIVE_QUOTES = 'RECEIVE_POSTS';
-function receiveQuotes(json) {
+export const receiveQuotes = json => {
   return {
     type: RECEIVE_QUOTES,
     locations: json
   };
-}
+};
 
 export const fetchQuotes = obj => {
   return function(dispatch) {
