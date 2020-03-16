@@ -66,6 +66,13 @@ Move to the client directory
 cd ../client
 ```
 
+Copy the example .env.development.example file and make the required configuration changes to it.
+You will need to add a Google Map API Key and ensure the server URL is correct
+
+```bash
+cp .env.development.example .env.development
+```
+
 Install the project dependencies
 
 ```bash
