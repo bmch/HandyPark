@@ -4,36 +4,56 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-exports.signup = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const error = new Error('Validation failed.');
-    error.statusCode = 422;
-    error.data = errors.array();
+exports.signup = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const error = new Error('Validation failed.');
+      console.log(errors);
+      error.statusCode = 422;
+      error.data = errors.array();
+      throw error;
+    }
+    const { email, password, firstName, lastName } = req.body;
+    const hashedPw = await bcrypt.hash(password, 12);
+    const newUser = new User({
+      email,
+      password: hashedPw,
+      firstName,
+      lastName
+    });
+    const savedUser = await newUser.save();
+    res.status(201).json({ message: 'User created!', userId: savedUser._id });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.login = async (req, res, next) => {
+  const { email, password } = req.body;
+  let loadedUser;
+  const user = await User.findOne({ email });
+  if (!user) {
+    const error = new Error('Could not find your account.');
+    error.statusCode = 401;
     throw error;
   }
-  const { email, password, firstName, lastName } = req.body;
-  // const email = req.body.email;
-  // const name = req.body.name;
-  // const password = req.body.password;
-  bcrypt
-    .hash(password, 12)
-    .then(hashedPw => {
-      const user = new User({
-        email,
-        password: hashedPw,
-        firstName,
-        lastName
-      });
-      return user.save();
-    })
-    .then(result => {
-      res.status(201).json({ message: 'User created!', userId: result._id });
-    })
-    .catch(err => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
-    });
+  loadedUser = user;
+  const isEqual = await bcrypt.compare(password, user.password);
+  if (!isEqual) {
+    const error = new Error(
+      'Wrong password. Try again or click Forgot password to reset it'
+    );
+    error.statusCode = 401;
+    throw error;
+  }
+  const token = jwt.sign(
+    {
+      email: loadedUser.email,
+      userId: loadedUser._id.toString()
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '180 days' }
+  );
+  res.status(200).json({ token: token, userId: loadedUser._id.toString() });
 };
