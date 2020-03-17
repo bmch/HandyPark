@@ -4,9 +4,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const router = require('./router.js');
+const parkingRoutes = require('./routes/parking');
+const authRoutes = require('./routes/auth');
 
-app.use(router);
+app.use('/parking', parkingRoutes);
+app.use('/auth', authRoutes);
 
 const PORT = 3001 || process.env.PORT;
 

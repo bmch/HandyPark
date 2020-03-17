@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const location = require('./controllers/location.js');
-const booking = require('./controllers/booking.js');
+const location = require('../controllers/location.js');
+const booking = require('../controllers/booking.js');
 
 router.get('/location', location.getAll);
 router.post('/location', location.post);
@@ -13,13 +13,8 @@ router.get('/booking', booking.getBooking);
 
 router.post('/booking', booking.post);
 
-
-
-
-router.get('/*', (req,res) =>{
-        console.log(req);
-        res.send('Not found', 404); 
-})
-
+// router.get('/*', (req, res) => {
+//   res.status(404).send('not found');
+// });
 
 module.exports = router;
