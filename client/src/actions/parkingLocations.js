@@ -22,14 +22,14 @@ export const receiveQuotes = json => {
   };
 };
 
-export const fetchQuotes = obj => {
+export const fetchQuotes = selectedDates => {
   return function(dispatch) {
-    dispatch(requestQuotes(obj));
-    const { startDate, endDate } = obj;
+    dispatch(requestQuotes(selectedDates));
+    const { startDate, endDate } = selectedDates;
+    // settimeout is used to delay API request and show loading spinners
     setTimeout(() => {
       ApiClient.fetchQuotes(
-        `?start_time=${startDate.toISOString()}&end_time=${endDate.toISOString()}`,
-        'GET'
+        `?start_time=${startDate.toISOString()}&end_time=${endDate.toISOString()}`
       ).then(locations => dispatch(receiveQuotes(locations)));
     }, 1500);
   };

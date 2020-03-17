@@ -16,10 +16,10 @@ export default {
     return fetchRequest(url, options);
   },
 
-  fetchQuotes: (URL_STRING, METHOD) => {
+  fetchQuotes: URL_STRING => {
     const url = BASE_URL + 'quotes' + URL_STRING;
     const options = {
-      method: `${METHOD}`,
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       referrer: 'no-referrer'
     };
