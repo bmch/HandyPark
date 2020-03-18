@@ -55,7 +55,7 @@ npm install
 Next create a .env file (or copy the .env.example file) in the server folder with a line of JWT_SECRET=add-your-key-here, add any secret/key you like.
 
 ```bash
-cp .env.example .env.development
+cp .env.example .env
 ```
 
 Ensure MongoDB is running and then type node index.js to run the server
