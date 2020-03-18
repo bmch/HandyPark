@@ -26,7 +26,7 @@ export const fetchQuotes = selectedDates => {
   return function(dispatch) {
     dispatch(requestQuotes(selectedDates));
     const { startDate, endDate } = selectedDates;
-    // settimeout is used to delay API request and show loading spinners
+    // settimeout is  used to simulates delay of a slower request,  spinners shoud load
     setTimeout(() => {
       ApiClient.fetchQuotes(
         `?start_time=${startDate.toISOString()}&end_time=${endDate.toISOString()}`

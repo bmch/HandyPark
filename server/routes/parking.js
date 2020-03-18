@@ -13,8 +13,4 @@ router.get('/booking', booking.getBooking);
 
 router.post('/booking', booking.post);
 
-// router.get('/*', (req, res) => {
-//   res.status(404).send('not found');
-// });
-
 module.exports = router;

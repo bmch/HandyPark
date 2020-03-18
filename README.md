@@ -52,6 +52,12 @@ To install all of the server dependencies type
 npm install
 ```
 
+Next create a .env file (or copy the .env.example file) in the server folder with a line of JWT_SECRET=add-your-key-here, add any secret/key you like.
+
+```bash
+cp .env.example .env.development
+```
+
 Ensure MongoDB is running and then type node index.js to run the server
 
 ```bash
@@ -82,7 +88,7 @@ npm install
 Start the front end react client
 
 ```bash
-node index.js
+npm run devserver
 ```
 
 ---
