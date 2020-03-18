@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 
-import Dashboard from '../components_refactor/Dashboard/Dashboard';
-import Login from '../components_refactor/User/Login';
+import Dashboard from '../components/Dashboard/Dashboard';
+import Login from '../components/User/Login';
 
-import '../index.css';
+import '../index.scss';
 
 const defaultPath = process.env.REACT_APP_BASE_PATH;
 

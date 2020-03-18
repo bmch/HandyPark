@@ -34,11 +34,10 @@ export default {
       referrer: 'no-referrer',
       body: JSON.stringify(data)
     };
-    console.log(url);
-    console.log(options.body);
-    const response = await fetchRequest(url, options);
-    console.log('response', response);
-    return response;
+    let response = await fetch(url, options);
+    let result = await response.json();
+    console.log('response', result);
+    return result;
   }
 };
 

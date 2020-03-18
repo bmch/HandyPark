@@ -29,7 +29,6 @@ const LoginValidation = yup.object().shape({
 
 export default withFormik({
   handleSubmit: (values, { setSubmitting }) => {
-    console.log(values);
     ApiClient.login({ email: values.email, password: values.password });
   },
   validationSchema: LoginValidation

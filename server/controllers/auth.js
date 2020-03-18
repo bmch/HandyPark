@@ -9,9 +9,9 @@ exports.signup = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const error = new Error('Validation failed.');
-      console.log(errors);
-      error.statusCode = 422;
+      error.statusCode = 400;
       error.data = errors.array();
+      res.status(400).json({ message: 'Validation failed' });
       throw error;
     }
     const { email, password, firstName, lastName } = req.body;
@@ -25,35 +25,51 @@ exports.signup = async (req, res, next) => {
     const savedUser = await newUser.save();
     res.status(201).json({ message: 'User created!', userId: savedUser._id });
   } catch (err) {
-    res.status(500).send(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 };
 
 exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
-  let loadedUser;
-  const user = await User.findOne({ email });
-  if (!user) {
-    const error = new Error('Could not find your account.');
-    error.statusCode = 401;
-    throw error;
-  }
-  loadedUser = user;
-  const isEqual = await bcrypt.compare(password, user.password);
-  if (!isEqual) {
-    const error = new Error(
-      'Wrong password. Try again or click Forgot password to reset it'
+  try {
+    const { email, password } = req.body;
+    let loadedUser;
+    const user = await User.findOne({ email });
+    if (!user) {
+      const error = new Error('User not found.');
+      error.statusCode = 401;
+      res.status(401).json({ message: 'Could not find your account.' });
+      throw error;
+    }
+    loadedUser = user;
+    const isEqual = await bcrypt.compare(password, user.password);
+    if (!isEqual) {
+      const error = new Error('Passwords do not match');
+      res.status(422).json({
+        message:
+          'Wrong password. Try again or click Forgot password to reset it'
+      });
+      error.statusCode = 422;
+      throw error;
+    }
+    const token = jwt.sign(
+      {
+        email: loadedUser.email,
+        userId: loadedUser._id.toString()
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '180 days' }
     );
-    error.statusCode = 401;
-    throw error;
+    res.status(200).json({
+      user: {
+        id: loadedUser._id.toString(),
+        firstName: loadedUser.firstName,
+        lastName: loadedUser.lastName,
+        email: loadedUser.email
+      },
+      jwt: token
+    });
+  } catch (error) {
+    console.log(error);
   }
-  const token = jwt.sign(
-    {
-      email: loadedUser.email,
-      userId: loadedUser._id.toString()
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: '180 days' }
-  );
-  res.status(200).json({ token: token, userId: loadedUser._id.toString() });
 };
