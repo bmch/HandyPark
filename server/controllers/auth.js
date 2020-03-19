@@ -23,7 +23,23 @@ exports.signup = async (req, res, next) => {
       lastName
     });
     const savedUser = await newUser.save();
-    res.status(201).json({ message: 'User created!', userId: savedUser._id });
+    const token = jwt.sign(
+      {
+        email: savedUser.email,
+        userId: savedUser._id.toString()
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '180 days' }
+    );
+    res.status(201).json({
+      user: {
+        id: savedUser._id.toString(),
+        firstName: savedUser.firstName,
+        lastName: savedUser.lastName,
+        email: savedUser.email
+      },
+      jwt: token
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

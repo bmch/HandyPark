@@ -52,11 +52,6 @@ export default () => {
 
   return (
     <React.Fragment>
-      <div className="top">
-        <div>
-          <img className="logo" src={Logo} alt="Handy Park Logo" />
-        </div>
-      </div>
       <DatePickerBar />
 
       <div className="toggle">

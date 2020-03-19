@@ -1,19 +1,20 @@
 // Helper styles for demo
 import './helper.css';
 import { DisplayFormikState } from './helper';
-import { beginUserLogin } from '../../actions/user';
+import { beginRegister } from '../../actions/user';
 import { connect } from 'react-redux';
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const LoginForm = ({ beginUserLogin2 }) => {
+const RegisterForm = ({ beginRegister }) => {
   return (
     <div className="app">
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: '', password: '', firstName: '', lastName: '' }}
         onSubmit={(values, { props, setSubmitting }) => {
-          beginUserLogin2(values);
+          beginRegister(values);
+          setSubmitting(false);
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -21,7 +22,9 @@ const LoginForm = ({ beginUserLogin2 }) => {
             .required('Required'),
           password: Yup.string()
             .min(5)
-            .required()
+            .required(),
+          firstName: Yup.string().required(),
+          lastName: Yup.string().required()
         })}
       >
         {props => {
@@ -78,6 +81,46 @@ const LoginForm = ({ beginUserLogin2 }) => {
                 <div className="input-feedback">{errors.password}</div>
               )}
 
+              <label htmlFor="firstName" style={{ display: 'block' }}>
+                First Name
+              </label>
+              <input
+                id="firstName"
+                placeholder="First Name"
+                type="firstName"
+                value={values.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.password && touched.password
+                    ? 'text-input error'
+                    : 'text-input'
+                }
+              />
+              {errors.firstName && touched.firstName && (
+                <div className="input-feedback">{errors.firstName}</div>
+              )}
+
+              <label htmlFor="lastName" style={{ display: 'block' }}>
+                Surname
+              </label>
+              <input
+                id="lastName"
+                placeholder="Last Name"
+                type="lastName"
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.password && touched.password
+                    ? 'text-input error'
+                    : 'text-input'
+                }
+              />
+              {errors.lastName && touched.lastName && (
+                <div className="input-feedback">{errors.lastName}</div>
+              )}
+
               <button
                 type="button"
                 className="outline"
@@ -100,8 +143,8 @@ const LoginForm = ({ beginUserLogin2 }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  beginUserLogin2: params => dispatch(beginUserLogin(params))
+  beginRegister: params => dispatch(beginRegister(params))
 });
-const Login = connect(null, mapDispatchToProps)(LoginForm);
+const Register = connect(null, mapDispatchToProps)(RegisterForm);
 
-export default Login;
+export default Register;

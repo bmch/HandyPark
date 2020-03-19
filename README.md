@@ -85,7 +85,7 @@ Install the project dependencies
 npm install
 ```
 
-Start the front end react client
+Run webpack to start the react application
 
 ```bash
 npm run devserver

@@ -38,6 +38,19 @@ export default {
     let result = await response.json();
     console.log('response', result);
     return result;
+  },
+  register: async data => {
+    const url = USER_URL + 'signup';
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      referrer: 'no-referrer',
+      body: JSON.stringify(data)
+    };
+    let response = await fetch(url, options);
+    let result = await response.json();
+    console.log('response', result);
+    return result;
   }
 };
 

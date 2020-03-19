@@ -4,11 +4,25 @@
   height: 14vh;
   width: 100vw;
   border-bottom: 2px solid #efefef;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   .logo {
     margin-top: 0;
     margin-left: 9rem;
     height: 100%;
     width: 190px;
+  }
+  .top-links {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    margin-right: 150px;
+    div {
+      margin: 22px;
+      padding: 22px;
+    }
   }
 }
 
