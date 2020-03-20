@@ -13,6 +13,8 @@ body {
 
 .app {
   margin: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 a {

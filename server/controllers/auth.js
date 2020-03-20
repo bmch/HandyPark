@@ -11,7 +11,9 @@ exports.signup = async (req, res, next) => {
       const error = new Error('Validation failed.');
       error.statusCode = 400;
       error.data = errors.array();
-      res.status(400).json({ message: 'Validation failed' });
+      res
+        .status(400)
+        .json({ message: errors.errors[0].msg, param: errors.errors[0].param });
       throw error;
     }
     const { email, password, firstName, lastName } = req.body;
@@ -42,7 +44,6 @@ exports.signup = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
   }
 };
 

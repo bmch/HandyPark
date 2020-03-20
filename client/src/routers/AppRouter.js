@@ -4,33 +4,23 @@ import { Route, Switch, Redirect, BrowserRouter, Link } from 'react-router-dom';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Login from '../components/User/Login';
 import Register from '../components/User/Register';
-import Logo from '../assets/graphics/handyparklogo@2x.png';
+import Header from '../components/Header';
 import '../index.scss';
-
-const defaultPath = process.env.REACT_APP_BASE_PATH;
+import '../components/Dashboard/Dashboard.scss';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import Account from '../components/User/Account';
+//const defaultPath = process.env.REACT_APP_BASE_PATH;
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div className="top">
-      <div>
-        <Link to="/">
-          <img className="logo" src={Logo} alt="Handy Park Logo" />
-        </Link>
-      </div>
-      <div className="top-links">
-        <div>
-          <Link to="/login">Login</Link>
-        </div>
-        <div>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      </div>
-    </div>
+    <Header />
     <Switch>
-      <Route exact path={defaultPath} component={Dashboard} />
-      <Route path="/" component={Dashboard} exact={true} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Register} />
+      {/* <Route exact path={defaultPath} component={Dashboard} /> */}
+      <PublicRoute path="/" component={Dashboard} exact={true} />
+      <PublicRoute path="/login" component={Login} />
+      <PublicRoute path="/signup" component={Register} />
+      <PrivateRoute path="/account" component={Account} />
     </Switch>
   </BrowserRouter>
 );

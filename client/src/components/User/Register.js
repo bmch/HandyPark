@@ -6,15 +6,26 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 const RegisterForm = ({ beginRegister }) => {
+  const history = useHistory();
   return (
     <div className="app">
       <Formik
         initialValues={{ email: '', password: '', firstName: '', lastName: '' }}
-        onSubmit={(values, { props, setSubmitting }) => {
-          beginRegister(values);
-          setSubmitting(false);
+        onSubmit={async (
+          values,
+          { props, setSubmitting, setErrors, resetForm }
+        ) => {
+          const response = await beginRegister(values);
+          if (!response.loggedIn) {
+            setErrors({ [response.param]: response.message });
+          } else {
+            resetForm();
+            setSubmitting(false);
+            history.push('/');
+          }
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -92,7 +103,7 @@ const RegisterForm = ({ beginRegister }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={
-                  errors.password && touched.password
+                  errors.firstName && touched.firstName
                     ? 'text-input error'
                     : 'text-input'
                 }
@@ -112,7 +123,7 @@ const RegisterForm = ({ beginRegister }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={
-                  errors.password && touched.password
+                  errors.lastName && touched.lastName
                     ? 'text-input error'
                     : 'text-input'
                 }
@@ -121,6 +132,9 @@ const RegisterForm = ({ beginRegister }) => {
                 <div className="input-feedback">{errors.lastName}</div>
               )}
 
+              {errors.response && (
+                <div className="input-feedback">{errors.response}</div>
+              )}
               <button
                 type="button"
                 className="outline"

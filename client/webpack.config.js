@@ -16,7 +16,7 @@ module.exports = env => {
     devtool: 'cheap-module-eval-source-map',
     devServer: {
       contentBase: PATH_DIST,
-      host: 'localhost',
+      host: '0.0.0.0',
       port: 8080,
       historyApiFallback: true,
       overlay: {

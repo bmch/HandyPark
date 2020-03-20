@@ -1,4 +1,3 @@
-// Helper styles for demo
 import './helper.css';
 import { DisplayFormikState } from './helper';
 import { beginUserLogin } from '../../actions/user';
@@ -6,22 +5,33 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
-const LoginForm = ({ beginUserLogin2 }) => {
+const LoginForm = ({ beginLogin }) => {
+  const history = useHistory();
+
   return (
     <div className="app">
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values, { props, setSubmitting }) => {
-          beginUserLogin2(values);
+        onSubmit={async (
+          values,
+          { props, setSubmitting, setErrors, resetForm }
+        ) => {
+          const response = await beginLogin(values);
+          if (!response.loggedIn) {
+            setErrors({ response: response.message });
+          } else {
+            resetForm();
+            setSubmitting(false);
+            history.push('/');
+          }
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
             .email()
             .required('Required'),
-          password: Yup.string()
-            .min(5)
-            .required()
+          password: Yup.string().required()
         })}
       >
         {props => {
@@ -77,6 +87,9 @@ const LoginForm = ({ beginUserLogin2 }) => {
               {errors.password && touched.password && (
                 <div className="input-feedback">{errors.password}</div>
               )}
+              {errors.response && (
+                <div className="input-feedback">{errors.response}</div>
+              )}
 
               <button
                 type="button"
@@ -100,7 +113,7 @@ const LoginForm = ({ beginUserLogin2 }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  beginUserLogin2: params => dispatch(beginUserLogin(params))
+  beginLogin: params => dispatch(beginUserLogin(params))
 });
 const Login = connect(null, mapDispatchToProps)(LoginForm);
 
