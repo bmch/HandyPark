@@ -8,7 +8,7 @@ import { DatePickerBar } from '../DatePickerBar/DatePickerBar';
 import './Dashboard.scss';
 
 export default () => {
-  const locations = useSelector(state => state.locations.locations);
+  const locations = useSelector((state) => state.locations.locations);
   /**
    * Fit map to its bounds after the api is loaded
    * @param {Object} map - current Google Map instance
@@ -28,7 +28,7 @@ export default () => {
   const getMapBounds = (map, maps, places) => {
     const bounds = new maps.LatLngBounds();
     // A LatLngBounds instance represents a rectangle in geographical coordinates
-    places.forEach(place => {
+    places.forEach((place) => {
       // Extends this bounds to contain the given point.
       bounds.extend(new maps.LatLng(place.location.lat, place.location.lng));
     });
@@ -45,7 +45,7 @@ export default () => {
   };
 
   const [listView, setListView] = useState(true);
-  const toggleListView = params => {
+  const toggleListView = (params) => {
     console.log('toggle fired');
     setListView(!listView);
   };
@@ -55,7 +55,7 @@ export default () => {
       <DatePickerBar />
 
       <div className="toggle">
-        <button onClick={() => toggleListView()}>
+        <button className="map-list-button" onClick={() => toggleListView()}>
           {listView ? 'View in Map' : 'List View'}
         </button>
       </div>
@@ -72,7 +72,7 @@ export default () => {
             apiIsLoaded(map, maps, locations)
           }
         >
-          {locations.map(place => (
+          {locations.map((place) => (
             <Marker
               key={place._id}
               id={place._id}

@@ -22,13 +22,13 @@ exports.signup = async (req, res, next) => {
       email,
       password: hashedPw,
       firstName,
-      lastName
+      lastName,
     });
     const savedUser = await newUser.save();
     const token = jwt.sign(
       {
         email: savedUser.email,
-        userId: savedUser._id.toString()
+        sub: savedUser._id.toString(),
       },
       process.env.JWT_SECRET,
       { expiresIn: '180 days' }
@@ -38,9 +38,9 @@ exports.signup = async (req, res, next) => {
         id: savedUser._id.toString(),
         firstName: savedUser.firstName,
         lastName: savedUser.lastName,
-        email: savedUser.email
+        email: savedUser.email,
       },
-      jwt: token
+      jwt: token,
     });
   } catch (err) {
     console.log(err);
@@ -64,7 +64,7 @@ exports.login = async (req, res, next) => {
       const error = new Error('Passwords do not match');
       res.status(422).json({
         message:
-          'Wrong password. Try again or click Forgot password to reset it'
+          'Wrong password. Try again or click Forgot password to reset it',
       });
       error.statusCode = 422;
       throw error;
@@ -72,7 +72,7 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign(
       {
         email: loadedUser.email,
-        userId: loadedUser._id.toString()
+        sub: loadedUser._id.toString(),
       },
       process.env.JWT_SECRET,
       { expiresIn: '180 days' }
@@ -82,11 +82,38 @@ exports.login = async (req, res, next) => {
         id: loadedUser._id.toString(),
         firstName: loadedUser.firstName,
         lastName: loadedUser.lastName,
-        email: loadedUser.email
+        email: loadedUser.email,
       },
-      jwt: token
+      jwt: token,
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+exports.googleSuccess = (req, res) => {
+  if (req.user) {
+    console.log('if there is a token this is what it is');
+    console.log('req.user.token', req.user.token);
+    const { email, _id } = req.user;
+    const token = jwt.sign(
+      {
+        email,
+        sub: _id.toString(),
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '180 days' }
+    );
+    // res.status(200).json({
+    //   user: {
+    //     id: _id.toString(),
+    //     firstName,
+    //     lastName,
+    //     email,
+    //   },
+    //   jwt: token,
+    // });
+
+    res.redirect('http://localhost:8080/loginSuccess?token=' + token);
   }
 };

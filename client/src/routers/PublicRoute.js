@@ -6,10 +6,10 @@ export const PublicRoute = ({
   isAuthenticated,
   component: Component,
   ...rest
-}) => <Route {...rest} component={props => <Component {...props} />} />;
+}) => <Route {...rest} component={(props) => <Component {...props} />} />;
 
-const mapStateToProps = state => ({
-  isAuthenticated: !!state.user.currentUser.id
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.user.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(PublicRoute);

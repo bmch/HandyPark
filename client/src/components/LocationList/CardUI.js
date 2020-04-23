@@ -5,9 +5,9 @@ import { hover, unhover } from '../../actions/onMouseHover';
 import FadeLoader from 'react-spinners/FadeLoader';
 
 export default ({ src, address, id, price, start_date, end_date }) => {
-  const hoverID = useSelector(state => state.hoverID);
+  const hoverID = useSelector((state) => state.hoverID);
   const dispatch = useDispatch();
-  const isFetching = useSelector(state => state.locations.isFetching);
+  const isFetching = useSelector((state) => state.locations.isFetching);
 
   return (
     <div
@@ -16,7 +16,7 @@ export default ({ src, address, id, price, start_date, end_date }) => {
       className={hoverID === id ? 'card hover-state' : 'card base-state'}
     >
       <div>
-        <img src={src} alt={address}></img>
+        <img className="card-img" src={src} alt={address}></img>
       </div>
 
       <div>{address}</div>

@@ -1,5 +1,5 @@
 // Helper styles for demo
-import './helper.css';
+import './helper.scss';
 import { DisplayFormikState } from './helper';
 import { beginRegister } from '../../actions/user';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 const RegisterForm = ({ beginRegister }) => {
   const history = useHistory();
   return (
-    <div className="app">
+    <div className="formik-app">
       <Formik
         initialValues={{ email: '', password: '', firstName: '', lastName: '' }}
         onSubmit={async (
@@ -28,17 +28,13 @@ const RegisterForm = ({ beginRegister }) => {
           }
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email()
-            .required('Required'),
-          password: Yup.string()
-            .min(5)
-            .required(),
+          email: Yup.string().email().required('Required'),
+          password: Yup.string().min(5).required(),
           firstName: Yup.string().required(),
-          lastName: Yup.string().required()
+          lastName: Yup.string().required(),
         })}
       >
-        {props => {
+        {(props) => {
           const {
             values,
             touched,
@@ -48,7 +44,7 @@ const RegisterForm = ({ beginRegister }) => {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset
+            handleReset,
           } = props;
           return (
             <form onSubmit={handleSubmit}>
@@ -156,8 +152,8 @@ const RegisterForm = ({ beginRegister }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  beginRegister: params => dispatch(beginRegister(params))
+const mapDispatchToProps = (dispatch) => ({
+  beginRegister: (params) => dispatch(beginRegister(params)),
 });
 const Register = connect(null, mapDispatchToProps)(RegisterForm);
 
