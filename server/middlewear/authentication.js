@@ -9,14 +9,10 @@ const getAuthTokenFromRequest = (req) => {
 
 module.exports = async (req, _res, next) => {
   const token = getAuthTokenFromRequest(req);
-  console.log('this is the token');
-  console.log(token);
   if (!token) {
     throw new Error('Authentication token not found.');
   }
   const userId = verifyToken(token).userId;
-  console.log('this is the user id');
-  console.log(userId);
   if (!userId) {
     throw new Error('Authentication token is invalid.');
   }

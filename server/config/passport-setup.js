@@ -19,9 +19,8 @@ const jwtOptions = {
 
 passport.use(
   new passportJwt.Strategy(jwtOptions, async (payload, done) => {
-    console.log('confirm we dont get here ,this far');
+    console.log('passport jwt strategy');
     const user = await User.findById(payload.sub);
-    console.log('this is the user', user);
     if (user) {
       return done(null, user, payload);
     }
@@ -44,9 +43,10 @@ passport.use(
       if (currentUser) {
         cb(null, currentUser);
       } else {
+        console.log('about to save new user');
+        console.log(email, given_name);
         const newUser = await new User({
           email,
-          password: 'hashedPw',
           firstName: given_name,
           lastName: family_name,
           googleId: id,

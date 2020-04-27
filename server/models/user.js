@@ -8,7 +8,6 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   firstName: {
     type: String,
@@ -19,6 +18,14 @@ const userSchema = new Schema({
     required: true,
   },
   googleId: String,
+});
+
+userSchema.pre('validate', function (next) {
+  if (!this.password && !this.googleId) {
+    next(new Error('either password or social id required'));
+  } else {
+    next();
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

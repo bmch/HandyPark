@@ -3,7 +3,7 @@ const passport = require('passport');
 const userController = require('../controllers/user');
 const isAuth = require('../middlewear/authentication');
 
-// router.get('/account', isAuth, userController.account);
+//router.get('/account', isAuth, userController.account);
 
 router.get(
   '/account',

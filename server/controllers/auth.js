@@ -31,7 +31,7 @@ exports.signup = async (req, res, next) => {
         sub: savedUser._id.toString(),
       },
       process.env.JWT_SECRET,
-      { expiresIn: '180 days' }
+      { expiresIn: '10 hours' }
     );
     res.status(201).json({
       user: {
@@ -75,7 +75,7 @@ exports.login = async (req, res, next) => {
         sub: loadedUser._id.toString(),
       },
       process.env.JWT_SECRET,
-      { expiresIn: '180 days' }
+      { expiresIn: '10h' }
     );
     res.status(200).json({
       user: {
@@ -93,26 +93,15 @@ exports.login = async (req, res, next) => {
 
 exports.googleSuccess = (req, res) => {
   if (req.user) {
-    console.log('if there is a token this is what it is');
-    console.log('req.user.token', req.user.token);
     const { email, _id } = req.user;
     const token = jwt.sign(
       {
+        exp: Math.floor(Date.now() / 1000) + 40, //expire in 5 seconds
         email,
         sub: _id.toString(),
       },
-      process.env.JWT_SECRET,
-      { expiresIn: '180 days' }
+      process.env.JWT_SECRET
     );
-    // res.status(200).json({
-    //   user: {
-    //     id: _id.toString(),
-    //     firstName,
-    //     lastName,
-    //     email,
-    //   },
-    //   jwt: token,
-    // });
 
     res.redirect('http://localhost:8080/loginSuccess?token=' + token);
   }
