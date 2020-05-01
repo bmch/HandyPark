@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { setCurrentUser } from '../../actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiClient from '../../services/ApiClient';
+import { beginLogout } from '../../actions/user';
 
 export default () => {
   const dispatch = useDispatch();
@@ -11,12 +12,11 @@ export default () => {
   const currentUser = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
-    ApiClient.fetchAccount(localStorage.getItem('jwtToken')).then(
-      (responseJson) => {
-        console.log('this is the response in account useeffect', responseJson);
-        dispatch(setCurrentUser(responseJson));
-      }
-    );
+    ApiClient.fetchAccount(localStorage.getItem('jwtToken'))
+      .then((res) => (res.status < 400 ? res : Promise.reject(res)))
+      .then((res) => res.json())
+      .then((res) => dispatch(setCurrentUser(res)))
+      .catch((err) => dispatch(beginLogout()));
   }, []);
 
   return (

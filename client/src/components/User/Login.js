@@ -14,7 +14,7 @@ const LoginForm = ({ beginLogin }) => {
   const handleGoogleLogin = () => {
     // Authenticate using via passport api in the backend
     // Open Twitter login page
-    window.open('http://localhost:3001/auth/google', '_self');
+    window.open(process.env.REACT_APP_BASE_URL + 'auth/', '_self');
   };
 
   return (

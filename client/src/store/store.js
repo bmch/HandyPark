@@ -7,13 +7,13 @@ import userReducer from '../reducers/user';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default initialState => {
+export default (initialState) => {
   const store = createStore(
     combineReducers({
       locations: locationsReducer,
       hoverID: onMouseHoverReducer,
       booking: bookingReducer,
-      user: userReducer
+      user: userReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

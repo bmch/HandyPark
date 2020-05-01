@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 const PATH_SOURCE = path.join(__dirname, './src');
 const PATH_DIST = path.join(__dirname, './dist');
 
-module.exports = env => {
+module.exports = (env) => {
   const environment = env.environment;
   const isProduction = environment === 'production';
   const isDevelopment = environment === 'development';
@@ -21,13 +21,18 @@ module.exports = env => {
       historyApiFallback: true,
       overlay: {
         errors: true,
-        warnings: true
-      }
+        warnings: true,
+      },
     },
     entry: [path.join(PATH_SOURCE, './index.js')],
     output: {
       path: PATH_DIST,
-      filename: 'js/[name].[hash].js'
+      filename: 'js/[name].[hash].js',
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
     },
     module: {
       rules: [
@@ -43,30 +48,30 @@ module.exports = env => {
                   {
                     debug: false,
                     useBuiltIns: 'usage',
-                    corejs: 3
-                  }
+                    corejs: 3,
+                  },
                 ],
-                '@babel/preset-react'
-              ]
-            }
-          }
+                '@babel/preset-react',
+              ],
+            },
+          },
         },
         {
           test: /\.s?css$/,
-          use: ['style-loader', 'css-loader', 'sass-loader']
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
-          use: ['file-loader']
-        }
-      ]
+          use: ['file-loader'],
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(PATH_SOURCE, './index.html')
+        template: path.join(PATH_SOURCE, './index.html'),
       }),
       new CleanWebpackPlugin(),
-      new Dotenv()
-    ]
+      new Dotenv(),
+    ],
   };
 };

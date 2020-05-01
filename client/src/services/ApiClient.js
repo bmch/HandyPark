@@ -1,6 +1,6 @@
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-const PARKING_URL = process.env.REACT_APP_BASE_URL + 'parking/';
-const USER_URL = process.env.REACT_APP_BASE_URL + 'auth/';
+const PARKING_URL = BASE_URL + 'parking/';
+const USER_URL = BASE_URL + 'auth/';
 
 export default {
   fetchLocations: () => {
@@ -54,7 +54,7 @@ export default {
         Authorization: 'Bearer ' + token,
       },
     };
-    return fetchRequest(url, options);
+    return fetch(url, options);
   },
   fetchPassportSuccess: async () => {
     const url = BASE_URL + 'auth/login/success';
