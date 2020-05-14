@@ -16,7 +16,7 @@ export const beginUserLogin = (user) => {
       } else {
         console.log('beginUserLogin user.js -', data);
         localStorage.setItem('jwtToken', data.jwt);
-        dispatch(loginUser(jwtDecode(data.jwt)));
+        dispatch(loginUser(data.user));
         return {
           loggedIn: true,
         };
