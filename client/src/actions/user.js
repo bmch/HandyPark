@@ -4,6 +4,8 @@ import jwtDecode from 'jwt-decode';
 export const beginUserLogin = (user) => {
   return (dispatch) => {
     return ApiClient.login(user).then((data) => {
+      console.log('this is what we got back from server');
+      console.log(data);
       if (data.message) {
         console.log('message returned', data.message);
         // handle invalid login credentials

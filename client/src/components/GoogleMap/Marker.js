@@ -25,8 +25,8 @@ const Wrapper = styled.div`
 
 const HighLightWrapper = styled.div`
   background-image: url(${MarkerHoverPNG});
-  height: 106px;
-  width: 65px;
+  height: 100px;
+  width: 59px;
   transform: translate(-50%, -100%);
 
   position: absolute;
@@ -51,7 +51,7 @@ const Price = styled.h1`
 `;
 
 const PriceHover = styled.h1`
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: center;
 
   vertical-align: top;
@@ -63,7 +63,7 @@ const PriceHover = styled.h1`
 `;
 
 const Marker = ({ price, id }) => {
-  const hoverID = useSelector(state => state.hoverID);
+  const hoverID = useSelector((state) => state.hoverID);
   const dispatch = useDispatch();
 
   if (hoverID === id) {
@@ -90,15 +90,6 @@ const Marker = ({ price, id }) => {
         {<Price>{'£' + parseFloat(price).toFixed(0)}</Price>}
       </Wrapper>
     );
-};
-
-Marker.defaultProps = {
-  onClick: null
-};
-
-Marker.propTypes = {
-  onClick: PropTypes.func,
-  text: PropTypes.string.isRequired
 };
 
 export default Marker;

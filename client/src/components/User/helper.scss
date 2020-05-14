@@ -1,7 +1,16 @@
+$button-input-width: 85%;
+
 .formik-app {
-  margin: 2rem;
-  max-width: 500px;
+  // border: 1px solid lightgray;
+  box-shadow: 0 1px 2px #c2c2c2;
+
+  max-width: 600px;
   margin: 0 auto;
+  margin-top: 3rem;
+  @media only screen and (max-width: 750px) {
+    margin-top: 0;
+  }
+  padding-bottom: 3rem;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -14,21 +23,15 @@
     color: #08c;
   }
 
-  code {
-    background: #eee;
-    padding: 0.1rem;
-    font-family: 'Menlo';
-    font-size: 13px;
-    color: #ff00aa;
-  }
-
   input {
     padding: 0.5rem;
-    font-size: 16px;
-    width: 100%;
+    font-size: 1.1rem;
+    width: $button-input-width;
     display: block;
+    margin: 0 auto;
     border-radius: 4px;
     border: 1px solid #ccc;
+    margin-bottom: 1rem;
   }
 
   input:focus {
@@ -43,73 +46,119 @@
   }
 
   label {
+    //padding-top: 0.5rem;
+    // margin-bottom: 0.5rem;
     font-weight: bold;
     display: block;
     margin-bottom: 0.5rem;
+    width: $button-input-width;
+    display: block;
+    margin: 0 auto;
   }
 
   .input-feedback {
+    margin: 0 auto;
+    width: $button-input-width;
     color: red;
     margin-top: 0.25rem;
   }
 
-  button {
-    max-width: 150px;
-    margin: 20px 0;
-    padding: 12px 20px;
-    border-style: none;
-    border-radius: 5px;
-    background-color: #08c;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-    font-size: 17px;
-    font-weight: 500;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-    -webkit-appearance: none;
+  .form-heading {
+    font-size: 1.6rem;
+    display: block;
+    width: $button-input-width;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed !important;
+  .form-submit-btn {
+    height: 2.7rem;
+    border-radius: 0.4rem;
+    background: #f1592c;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    border: 1px solid lightgrey;
+    letter-spacing: 0.02rem;
+    display: block;
+    // box-sizing: border-box;
+    width: $button-input-width;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
-  button + button {
-    margin-left: 0.5rem;
+  .social-btn {
+    display: block;
+    background: white;
+    border-color: rgb(176, 176, 176);
+    border-width: 1px; //was 2px
+    border-color: #cdd3db;
+    border-style: solid;
+    white-space: nowrap;
+    width: $button-input-width;
+    margin: 0 auto;
+    height: 2.7rem;
+    border-radius: 4px;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
-  button.outline {
-    background-color: #eee;
-    border: 1px solid #aaa;
-    color: #555;
+  .google-span-icon {
+    background: url('https://developers.google.com/identity/sign-in/g-normal.png')
+      transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+
+  .apple-span-icon {
+    background: url('../../assets/graphics/apple-logo.png') transparent 5px 50%
+      no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+
+  .facebook-span-icon {
+    background: url('../../assets/graphics/facebook.smll.svg') transparent 5px
+      50% no-repeat;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+
+    margin-right: 10px;
   }
 }
 
-._sxo1l2o {
-  /* -moz-box-align: center !important; */
-  /* -moz-appearance: none !important; */
-  /* background: rgb(255, 255, 255) none repeat scroll 0% 0% !important; */
-  border: 1px solid rgb(235, 235, 235) !important;
-  display: inline-flex !important;
-  margin: 0px !important;
-  outline: currentcolor none medium !important;
-  overflow: visible !important;
-  padding: 0px 16px !important;
-  text-decoration: none !important;
-  user-select: auto !important;
-  align-items: center !important;
-  border-radius: 21px !important;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px !important;
-  height: 42px !important;
-  position: relative !important;
-  transition: box-shadow 0.2s ease 0s !important;
-  vertical-align: middle !important;
-  white-space: nowrap !important;
-  text-align: inherit !important;
-  line-height: 18px !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-  font-family: inherit !important;
-  color: rgb(34, 34, 34) !important;
-  /* cursor: pointer !important; */
+.horizontal-rule {
+  display: block;
+  // padding-top: 2rem;
+  color: rgb(180, 179, 179);
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgb(180, 179, 179);
+  line-height: 0.1em;
+
+  width: $button-input-width;
+  margin: 3rem auto 3rem auto;
+
+  span {
+    background: #fff;
+    padding: 0 10px;
+  }
+}
+
+.marker-icon {
+  color: lightseagreen;
 }

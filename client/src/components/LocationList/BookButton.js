@@ -1,40 +1,28 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import Checkout from '../Booking/Checkout';
-
-export default function BookButton({ id, price, start_date, end_date }) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+import { NavLink } from 'react-router-dom';
+import './BookButton.scss';
+export default function BookButton({
+  id,
+  price,
+  start_date,
+  end_date,
+  src,
+  address,
+}) {
+  start_date = new Date(start_date).toISOString().substring(0, 16);
+  end_date = new Date(end_date).toISOString();
   return (
     <div>
-      <Button
-        variant="contained"
-        style={{ backgroundColor: 'rgb(241, 89, 44)', color: 'white' }}
-        onClick={handleClickOpen}
+      <NavLink
+        className="book-navlink"
+        to={{
+          pathname: `/checkout/${id}`,
+          search: `?starts=${start_date}&ends=${end_date}`,
+          state: { price, src, address },
+        }}
       >
-        Book
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <Checkout
-          id={id}
-          price={price}
-          start_date={start_date}
-          end_date={end_date}
-        />
-      </Dialog>
+        <button className="book-button">Book</button>
+      </NavLink>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default {
       referrer: 'no-referrer',
       body: JSON.stringify(data),
     };
-    return fetchRequest(url, options);
+    return fetch(url, options).then((res) => res.json());
   },
   register: async (data) => {
     const url = USER_URL + 'signup';
@@ -45,7 +45,7 @@ export default {
       referrer: 'no-referrer',
       body: JSON.stringify(data),
     };
-    return fetchRequest(url, options);
+    return fetch(url, options).then((res) => res.json());
   },
   fetchAccount: async (token) => {
     const url = BASE_URL + 'user/account';

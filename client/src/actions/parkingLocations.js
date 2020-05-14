@@ -37,8 +37,8 @@ export const fetchQuotes = (selectedDates) => {
 
 export const fetchParkingLocations = () => {
   return (dispatch) => {
-    ApiClient.fetchLocations().then((locations) => {
-      dispatch(setParkingLocations(locations));
-    });
+    ApiClient.fetchLocations().then((locations) =>
+      dispatch(setParkingLocations(locations))
+    );
   };
 };

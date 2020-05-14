@@ -8,7 +8,7 @@ export default ({ src, address, id, price, start_date, end_date }) => {
   const hoverID = useSelector((state) => state.hoverID);
   const dispatch = useDispatch();
   const isFetching = useSelector((state) => state.locations.isFetching);
-
+  price = parseFloat(price).toFixed(2);
   return (
     <div
       onMouseEnter={() => dispatch(hover(id))}
@@ -24,7 +24,7 @@ export default ({ src, address, id, price, start_date, end_date }) => {
         {isFetching ? (
           <FadeLoader color={'rgb(241, 89, 44)'} loading={isFetching} />
         ) : (
-          <div>£{parseFloat(price).toFixed(2)} </div>
+          <div>£{price}</div>
         )}
 
         <div>
@@ -33,6 +33,8 @@ export default ({ src, address, id, price, start_date, end_date }) => {
             price={price}
             start_date={start_date}
             end_date={end_date}
+            src={src}
+            address={address}
           />
         </div>
       </div>

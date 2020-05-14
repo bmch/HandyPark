@@ -1,6 +1,4 @@
-// Helper styles for demo
 import './helper.scss';
-import { DisplayFormikState } from './helper';
 import { beginRegister } from '../../actions/user';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -8,10 +6,16 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 
+const handleGoogleLogin = () => {
+  // Authenticate using via passport api in the backend
+  window.open(process.env.REACT_APP_BASE_URL + 'auth/', '_self');
+};
+
 const RegisterForm = ({ beginRegister }) => {
   const history = useHistory();
   return (
     <div className="formik-app">
+      <h2 className="form-heading">Create your account</h2>
       <Formik
         initialValues={{ email: '', password: '', firstName: '', lastName: '' }}
         onSubmit={async (
@@ -44,7 +48,6 @@ const RegisterForm = ({ beginRegister }) => {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset,
           } = props;
           return (
             <form onSubmit={handleSubmit}>
@@ -131,19 +134,18 @@ const RegisterForm = ({ beginRegister }) => {
               {errors.response && (
                 <div className="input-feedback">{errors.response}</div>
               )}
+
               <button
-                type="button"
-                className="outline"
-                onClick={handleReset}
-                disabled={!dirty || isSubmitting}
+                className="form-submit-btn"
+                type="submit"
+                disabled={isSubmitting}
               >
-                Reset
-              </button>
-              <button type="submit" disabled={isSubmitting}>
                 Submit
               </button>
-
-              <DisplayFormikState {...props} />
+              <button className="social-btn" onClick={handleGoogleLogin}>
+                <span className="google-span-icon"></span>
+                <span> Continue with Google</span>
+              </button>
             </form>
           );
         }}

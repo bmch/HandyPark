@@ -1,25 +1,23 @@
+@import '../DatePickerBar/DatePickerBar.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+$top-header-height: 8rem;
+
 .top-header {
-  // background: rgb(247, 111, 79);
   background: white;
-  height: 10vh;
+  height: $top-header-height;
   width: 100%;
-  //border-bottom: 2px solid #efefef;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-  // left: 0px !important;
-  // //@extend: absolute !important;
-  // top: 0px !important;
-  // transition: opacity 0.3s cubic-bezier(0.35, 0, 0.65, 1) 0s !important;
-  // background: rgb(255, 255, 255) none repeat scroll 0% 0% !important;
-  // box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px !important;
-
   .logo {
     margin-top: 0;
     margin-left: 2rem;
-    height: 97%;
-    // width: 145px;
+    height: 88%;
     @media only screen and (max-width: 1000px) {
       margin-left: 0.4rem;
     }
@@ -54,10 +52,15 @@
 }
 
 .list {
-  height: 80vh;
   position: absolute;
-  left: 1px;
-  bottom: 1px;
+
+  top: $top-header-height + $bar-height;
+  width: calc(100% - 3em);
+  @media only screen and (max-width: 750px) {
+    top: $top-header-height + $bar-height-mobile;
+  }
+
+  bottom: 0;
   background: #efefef;
   margin-right: 0px;
   padding-right: 5px;
@@ -66,24 +69,23 @@
 
 .map {
   background: #efefef;
-  height: 80vh;
+  top: $top-header-height + $bar-height;
+  @media only screen and (max-width: 750px) {
+    top: $top-header-height + $bar-height-mobile;
+  }
   position: absolute;
   right: 1px;
   bottom: 1px;
   margin-left: 0px;
-  padding-left: 15px;
+  padding-left: 0.2rem;
 }
 
 @media only screen and (max-width: 750px) {
   .list {
     width: 100vw;
-    // height: 80vh;
-    height: 66vh;
   }
   .map {
     width: 100vw;
-    // height: 80vh;
-    height: 66vh;
   }
 
   .toggle {

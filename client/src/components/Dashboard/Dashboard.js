@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import LocationList from '../LocationList/LocationList';
+import { fetchParkingLocations } from '../../actions/parkingLocations';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import Marker from '../GoogleMap/Marker';
 import Logo from '../../assets/graphics/handyparklogo@2x.png';
-import { DatePickerBar } from '../DatePickerBar/DatePickerBar';
+import DatePickerBar from '../DatePickerBar/DatePickerBar';
+
 import './Dashboard.scss';
 
 export default () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(fetchParkingLocations()), [dispatch]);
+
+  const locationsState = useSelector((state) => state.locations);
   const locations = useSelector((state) => state.locations.locations);
+
   /**
    * Fit map to its bounds after the api is loaded
    * @param {Object} map - current Google Map instance
@@ -60,7 +68,8 @@ export default () => {
         </button>
       </div>
 
-      <LocationList showHideClass={listView} />
+      {locationsState.isFetching && <div>Loading</div>}
+      {!locationsState.isFetching && <LocationList showHideClass={listView} />}
 
       {locations.length && (
         <GoogleMap

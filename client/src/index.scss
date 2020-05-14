@@ -2,6 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
+  background: #fafafb;
+}
+
+button {
+  cursor: pointer !important;
 }
 
 /*
@@ -56,10 +61,11 @@ p {
 }
 
 .hover-state {
-  border: 1px solid darkgrey;
-  -webkit-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
-  -moz-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
-  box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  border: 1px solid lightgrey;
+  // -webkit-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  // -moz-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  // box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
+  box-shadow: 0 1px 2px rgb(94, 92, 92);
 }
 
 .last-div-card {
