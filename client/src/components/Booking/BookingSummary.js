@@ -47,9 +47,7 @@ export default ({ startDate, endDate, checkoutState, id }) => {
             <div className="marker-icon">
               <FontAwesomeIcon icon={faMapMarkerAlt} />
             </div>
-            <div classname="summary-address">
-              <p>{address}</p>
-            </div>
+            <div className="summary-address">{address}</div>
           </div>
           <div className="parking-paragraph">
             <strong>Parking From</strong>

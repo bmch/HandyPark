@@ -91,16 +91,40 @@ $top-header-height: 8rem;
   .toggle {
     z-index: 100;
     position: absolute;
-    height: 25px;
+    height: 38px;
     width: 100%;
     background: transparent;
-    bottom: 0;
+    bottom: 5px;
   }
 
   .map-list-button {
+    width: 170px;
+    height: 38px;
+    background: url('../../assets/graphics/google-maps-new-interface1.jpg')
+      no-repeat;
+    cursor: pointer;
+    border: none;
     display: block;
-    width: 30%;
+    border-radius: 3rem;
+    border: 1px solid white;
+    box-shadow: rgba(0, 0, 0, 0.28) 0px 1px 2px !important;
     margin: 0 auto;
+  }
+  .inner-map-button {
+    width: 90px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+
+    background: white;
+    color: #5f5e5e;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    display: block;
+    border-radius: 3rem;
+    margin: 0 auto;
+    padding-left: 0.2rem;
   }
 
   .hide {

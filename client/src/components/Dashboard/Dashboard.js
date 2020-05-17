@@ -63,14 +63,17 @@ export default () => {
       <DatePickerBar />
 
       <div className="toggle">
-        <button className="map-list-button" onClick={() => toggleListView()}>
-          {listView ? 'View in Map' : 'List View'}
-        </button>
+        <div className="map-list-button" onClick={() => toggleListView()}>
+          <div className="inner-map-button">
+            {listView ? 'View Map' : 'List View'}
+          </div>
+        </div>
       </div>
 
-      {locationsState.isFetching && <div>Loading</div>}
-      {!locationsState.isFetching && <LocationList showHideClass={listView} />}
+      {/* {locationsState.isFetching && <div>Loading</div>} */}
+      {/* {!locationsState.isFetching && <LocationList showHideClass={listView} />} */}
 
+      <LocationList showHideClass={listView} />
       {locations.length && (
         <GoogleMap
           showHideClass={listView}

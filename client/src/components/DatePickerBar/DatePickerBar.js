@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
 
 import { fetchQuotes } from '../../actions/parkingLocations';
 import './DatePickerBar.scss';
@@ -25,26 +25,40 @@ const GetPriceButton = styled.button`
 
 const DatePickerUI = React.lazy(() => import('./DatePickerUI'));
 //import DatePickerUI from './DatePickerUI';
-const DatePickerBar = () => {
+const DatePickerBar = (props) => {
+  const startRef = useRef();
+  const endRef = useRef();
+
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
+
   const initialEndDate = new Date();
   initialEndDate.setHours(initialEndDate.getHours() + 1);
   const [endDate, setEndDate] = useState(initialEndDate);
 
+  const onStartChange = (date) => {
+    // startRef.current.setOpen(false);
+    // endRef.current.setOpen(true);
+    setStartDate(date);
+  };
+
   return (
     <div className="bar">
       <div className="both-date-divs">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>DatePicker Loading...</div>}>
           <DatePickerUI
+            //  ref={startRef}
             selected={startDate}
-            onChange={setStartDate}
+            onChange={onStartChange}
             labelText="Parking from"
+            minDate={new Date()}
           />
           <DatePickerUI
+            // ref={endRef}
             selected={endDate}
             onChange={setEndDate}
             labelText="Parking to"
+            minDate={startDate}
           />
         </Suspense>
       </div>

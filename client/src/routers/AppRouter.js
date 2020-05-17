@@ -21,7 +21,7 @@ import PublicRoute from './PublicRoute';
 const AppRouter = () => (
   <BrowserRouter>
     <Header />
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>AppRouter Loading...</div>}>
       <Switch>
         <PublicRoute path="/" component={Dashboard} exact={true} />
         <PublicRoute path="/login" component={Login} />

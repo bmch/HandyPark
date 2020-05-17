@@ -61,12 +61,12 @@ p {
 }
 
 .hover-state {
-  border: 1px solid lightgrey;
+  border: 1px solid #b0b0b0;
   // -webkit-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
   // -moz-box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
   // box-shadow: 6px 6px 40px 0px rgba(0, 0, 0, 0.64) !important;
   box-shadow: 0 1px 2px rgb(94, 92, 92);
-  background: #fcfcfc;
+  background: #ffff;
   color: #343434;
 }
 
@@ -77,6 +77,7 @@ p {
   flex-direction: column;
   justify-content: space-between;
   text-align: right;
+  align-items: flex-end;
 }
 
 .base-state {
