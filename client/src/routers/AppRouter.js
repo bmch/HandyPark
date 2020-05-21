@@ -15,13 +15,14 @@ import '../index.scss';
 import '../components/Dashboard/Dashboard.scss';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import BookingConfirmationStatus from '../components/Booking/BookingConfirmationStatus';
 
 //const defaultPath = process.env.REACT_APP_BASE_PATH;
 
 const AppRouter = () => (
   <BrowserRouter>
     <Header />
-    <Suspense fallback={<div>AppRouter Loading...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <PublicRoute path="/" component={Dashboard} exact={true} />
         <PublicRoute path="/login" component={Login} />
@@ -29,6 +30,10 @@ const AppRouter = () => (
         <PublicRoute path="/signup" component={Register} />
         <PublicRoute path="/checkout/:id" component={Checkout} />
         <PrivateRoute path="/account" component={Account} />
+        <PrivateRoute
+          path="/BookingConfirmationStatus"
+          component={BookingConfirmationStatus}
+        />
       </Switch>
     </Suspense>
   </BrowserRouter>

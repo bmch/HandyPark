@@ -7,17 +7,33 @@ export default {
     return fetchRequest(PARKING_URL + 'location');
   },
 
-  postBooking: (data) => {
+  postBooking: (data, token) => {
+    console.log('post booking api client');
     const url = PARKING_URL + 'booking';
     const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
       referrer: 'no-referrer',
       body: JSON.stringify(data),
     };
-    return fetchRequest(url, options);
+    return fetch(url, options);
   },
-
+  fetchBookings: (token) => {
+    console.log('get booking api client');
+    const url = PARKING_URL + 'booking';
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      referrer: 'no-referrer',
+    };
+    return fetch(url, options);
+  },
   fetchQuotes: (URL_STRING) => {
     const url = PARKING_URL + 'quotes' + URL_STRING;
     const options = {

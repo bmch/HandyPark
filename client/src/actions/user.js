@@ -69,6 +69,11 @@ export const setCurrentUser = (user) => ({
   user,
 });
 
+export const setUserBookings = (bookings) => ({
+  type: 'SET_USER_BOOKINGS',
+  bookings,
+});
+
 export const beginSocialLogin = (token) => {
   //  return (dispatch) => {
   console.log('begin Social login user.js -');

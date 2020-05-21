@@ -1,19 +1,22 @@
 import ApiClient from '../services/ApiClient';
 
-export const startAddBooking = bookingData => dispatch => {
+export const startAddBooking = (bookingData, jwt) => (dispatch) => {
   dispatch(bookingRequest(bookingData));
-  return ApiClient.postBooking(bookingData).then(data =>
-    dispatch(bookingSuccess())
-  );
+  return ApiClient.postBooking(bookingData, jwt)
+    .then((res) => (res.status < 400 ? res : console.log(res)))
+    .then((res) => {
+      dispatch(bookingSuccess());
+      return res.json();
+    });
 };
 
 export const BOOKING_REQUEST = 'BOOKING_REQUEST';
-export const bookingRequest = booking => ({
+export const bookingRequest = (booking) => ({
   type: BOOKING_REQUEST,
-  booking
+  booking,
 });
 
 export const BOOKING_SUCCESS = 'BOOKING_SUCCESS';
 export const bookingSuccess = () => ({
-  type: BOOKING_SUCCESS
+  type: BOOKING_SUCCESS,
 });

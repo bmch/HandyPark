@@ -114,3 +114,24 @@
   margin-bottom: 0;
   padding-bottom: 1rem;
 }
+
+.payment-button {
+  font-size: 1.1rem;
+  display: block;
+  color: white;
+  background: #29a536;
+  border-color: rgb(176, 176, 176);
+  border-width: 1px; //was 2px
+  border-color: #cdd3db;
+  border-style: solid;
+  white-space: nowrap;
+  width: 80%;
+  margin: 0 auto;
+  height: 2.7rem;
+  border-radius: 4px;
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}

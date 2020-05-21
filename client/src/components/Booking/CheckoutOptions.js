@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { handleGoogleLogin } from '../../utils/social.helper';
+import RegisterFormikForm from '../User/RegisterFormikForm';
 
 const CheckoutOptions = ({ loco }) => {
-  console.log('loco inside checkout options', loco);
-
+  const [viewForm, setViewForm] = useState(false);
   return (
     <div className="checkout-options">
       <div className="formik-app">
@@ -65,22 +65,25 @@ const CheckoutOptions = ({ loco }) => {
         <h2 className="horizontal-rule">
           <span>or</span>
         </h2>
-        <button
-          className="social-btn"
-          onClick={() => {
-            console.log('add details');
-          }}
-        >
-          <span
-            style={{
-              fontSize: '0.9rem',
-              color: '#3e3e3e',
-              fontFamily: 'Nunito,Avenir,sans-serif',
+        {!viewForm && (
+          <button
+            className="social-btn"
+            onClick={() => {
+              setViewForm(true);
             }}
           >
-            Enter details manually
-          </span>
-        </button>
+            <span
+              style={{
+                fontSize: '0.9rem',
+                color: '#3e3e3e',
+                fontFamily: 'Nunito,Avenir,sans-serif',
+              }}
+            >
+              Enter details manually
+            </span>
+          </button>
+        )}
+        {viewForm && <RegisterFormikForm redirectTo={loco} />}
       </div>
     </div>
   );

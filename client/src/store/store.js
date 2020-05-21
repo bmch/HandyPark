@@ -4,7 +4,7 @@ import locationsReducer from '../reducers/locations';
 import onMouseHoverReducer from '../reducers/onMouseHover';
 import bookingReducer from '../reducers/booking';
 import userReducer from '../reducers/user';
-
+import checkoutReducer from '../reducers/checkout';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default (initialState) => {
@@ -14,6 +14,7 @@ export default (initialState) => {
       hoverID: onMouseHoverReducer,
       booking: bookingReducer,
       user: userReducer,
+      checkout: checkoutReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

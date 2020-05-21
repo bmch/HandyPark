@@ -53,7 +53,7 @@ export default () => {
   };
 
   const [listView, setListView] = useState(true);
-  const toggleListView = (params) => {
+  const toggleListView = () => {
     console.log('toggle fired');
     setListView(!listView);
   };
@@ -78,6 +78,7 @@ export default () => {
         <GoogleMap
           showHideClass={listView}
           defaultZoom={6}
+          zoom={listView ? 1 : 14}
           defaultCenter={[4.5983562, -5.9304971]}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) =>

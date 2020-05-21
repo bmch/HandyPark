@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import './BookButton.scss';
 import { useHistory } from 'react-router-dom';
 import BookButtonSpin from './BookButtonSpin';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCheckout } from '../../actions/checkout';
 
 import './Loader.scss';
 
@@ -17,6 +19,7 @@ export default function BookButton({
   start_date = new Date(start_date).toISOString().substring(0, 16);
   end_date = new Date(end_date).toISOString();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
 
@@ -44,7 +47,17 @@ export default function BookButton({
       <div>
         <BookButtonSpin
           isLoading={isButtonLoading}
-          onClick={() => setIsButtonLoading(true)}
+          onClick={() => {
+            setIsButtonLoading(true);
+            dispatch(
+              addToCheckout({
+                location_id: id,
+                price,
+                start_time: start_date,
+                end_time: end_date,
+              })
+            );
+          }}
         >
           Book
         </BookButtonSpin>

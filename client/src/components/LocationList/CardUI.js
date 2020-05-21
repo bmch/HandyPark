@@ -2,6 +2,7 @@ import React from 'react';
 import BookButton from './BookButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { hover, unhover } from '../../actions/onMouseHover';
+
 import FadeLoader from 'react-spinners/FadeLoader';
 
 export default ({ src, address, id, price, start_date, end_date }) => {
